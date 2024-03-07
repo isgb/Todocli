@@ -1,7 +1,7 @@
 import {createInterface} from "readline";
 import chalk from "chalk";
 
-const task = [];
+const tasks = [];
 
 const rl = createInterface({
     input: process.stdin,
@@ -17,14 +17,32 @@ function displayMenu() {
     console.log("4. Salir");
 }
 
+function addTask(){
+    rl.question(chalk.bgMagentaBright("Escribe la tarea: "), (task) => {
+        tasks.push({task, completed: false})
+        console.log(chalk.green.bold("Tarea agregada con éxito"));
+        displayMenu();
+        chooseOption();
+        console.log(tasks)
+    });
+}
+
+function listsTasks() {
+    console.log(chalk.yellow.bold("\n🦊🦊🦊🦊 Tareas 🦊🦊🦊🦊\n"));
+    tasks.forEach((task,index) => {
+        let status = (task.completed) ? '✅' : '❌';
+        console.log(chalk.bgBlueBright(`${index + 1}. ${status} - ${task.task}`));
+    })
+}
+
 function chooseOption(){
     rl.question("Digita el número de tu opción:", (choice) => {
         switch(choice){
             case "1":
-                console.log("Creando Tarea");
+                addTask();
                 break;
             case "2":
-                console.log("Listando tareas");
+                listsTasks();
                 break;
             case "3":
                 console.log("Completar Tarea");
