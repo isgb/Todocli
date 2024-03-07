@@ -10,6 +10,7 @@ const rl = createInterface({
 
 function displayMenu() {
     console.log(chalk.redBright.bold("🦊🦊🦊🦊 To Do App 🦊🦊🦊🦊"));
+    console.log(chalk.blueBright("Menú de Opciones"));
     console.log("1. Agregar tarea");
     console.log("2. Listar tareas");
     console.log("3. Completar tarea");
@@ -17,7 +18,7 @@ function displayMenu() {
 }
 
 function chooseOption(){
-    rl.question("Elige una opción, digita el número de tu opción:", (choice) => {
+    rl.question("Digita el número de tu opción:", (choice) => {
         switch(choice){
             case "1":
                 console.log("Creando Tarea");
@@ -34,9 +35,12 @@ function chooseOption(){
                 break;
             default:
                 console.log(chalk.red("Opcion invalida, Intenta neuvamente \n"));
+                displayMenu();
+                chooseOption();
                 break;
         }
     })
 }
 
 displayMenu();
+chooseOption();
