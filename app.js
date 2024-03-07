@@ -62,3 +62,6 @@ function chooseOption(){
 
 displayMenu();
 chooseOption();
+
+// https://www.youtube.com/watch?v=0f26_Enlv38&t=14727s
+// 5:42:31 
