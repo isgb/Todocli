@@ -15,6 +15,7 @@ function displayMenu() {
     console.log("2. Listar tareas");
     console.log("3. Completar tarea");
     console.log("4. Salir");
+    console.log("\n\n");
 }
 
 function addTask(){
@@ -27,12 +28,33 @@ function addTask(){
     });
 }
 
+function completeTask() {
+    rl.question(chalk.bgMagentaBright("Digita el numero de la tarea a completar: "), (taskNumber) => {
+        const index = parseInt(taskNumber)
+    })
+}
+
 function listsTasks() {
     console.log(chalk.yellow.bold("\n🦊🦊🦊🦊 Tareas 🦊🦊🦊🦊\n"));
-    tasks.forEach((task,index) => {
-        let status = (task.completed) ? '✅' : '❌';
-        console.log(chalk.bgBlueBright(`${index + 1}. ${status} - ${task.task}`));
-    })
+
+    if(tasks.length === 0){
+        console.log(chalk.green.bold("No hay tareas por hacer"));
+    }
+    else{
+        tasks.forEach((task,index) => {
+            let status = (task.completed) ? '✅' : '❌';
+
+            if(status){
+                console.log(chalk.greenBright(`${index + 1}. ${status} - ${task.task}`));
+            }else{
+                console.log(chalk.redBright(`${index + 1}. ${status} - ${task.task}`));
+            }
+        })
+    }
+
+    console.log("\n")
+    displayMenu()
+    chooseOption()
 }
 
 function chooseOption(){
@@ -45,14 +67,14 @@ function chooseOption(){
                 listsTasks();
                 break;
             case "3":
-                console.log("Completar Tarea");
+                completeTask();
                 break;
             case "4":
                 console.log(chalk.yellowBright("Adiós 🦊👋"));
                 rl.close()
                 break;
             default:
-                console.log(chalk.red("Opcion invalida, Intenta neuvamente \n"));
+                console.log(chalk.red("Opcion invalida, Intenta nuevamente \n\n"));
                 displayMenu();
                 chooseOption();
                 break;
