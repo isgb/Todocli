@@ -24,13 +24,22 @@ function addTask(){
         console.log(chalk.green.bold("Tarea agregada con éxito"));
         displayMenu();
         chooseOption();
-        console.log(tasks)
+        // console.log(tasks)
     });
 }
 
 function completeTask() {
     rl.question(chalk.bgMagentaBright("Digita el numero de la tarea a completar: "), (taskNumber) => {
-        const index = parseInt(taskNumber)
+        const index = parseInt(taskNumber) - 1;
+        if(index >= 0 && index < tasks.length){
+            tasks[index].completed = true;
+            console.log(chalk.green.bold("Tarea marcada con exito \n\n"))
+        }else{
+            console.log(chalk.red.bold("Número de tarea invalido \n\n"))
+        }
+        listsTasks()
+        displayMenu();
+        chooseOption();
     })
 }
 
@@ -86,4 +95,4 @@ displayMenu();
 chooseOption();
 
 // https://www.youtube.com/watch?v=0f26_Enlv38&t=14727s
-// 5:42:31 
+// 6:00:54 
