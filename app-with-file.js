@@ -27,7 +27,12 @@ function loadTasks() {
         tasks.length = 0;
 
         lines.forEach(line => {
-            const [task, completed] = line.split("|")
+            if(line.trim() !== ""){
+                const [task, completed] = line.split("|");
+                tasks.push({ task, completed: completed === true});
+            }
+
+            console.log(chalk.green.bold("Las tareas se han cargado con éxito en la BD."));
         });
     } catch (error) {
         
