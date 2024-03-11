@@ -32,10 +32,10 @@ function loadTasks() {
                 tasks.push({ task, completed: completed === true});
             }
 
-            console.log(chalk.green.bold("Las tareas se han cargado con éxito en la BD."));
+            console.log(chalk.green.bold("Las tareas se han cargado con éxito en la BD.\n"));
         });
     } catch (error) {
-        
+        console.log(chalk.green.bold("No hay tareas por hacer.\n"));
     }
 }
 
@@ -46,7 +46,7 @@ function saveTask() {
 function addTask(){
     rl.question(chalk.bgMagentaBright("Escribe la tarea: "), (task) => {
         tasks.push({task, completed: false})
-        console.log(chalk.green.bold("Tarea agregada con éxito"));
+        console.log(chalk.green.bold("Tarea agregada con éxito\n"));
 
         saveTask();
         displayMenu();
