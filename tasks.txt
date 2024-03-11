@@ -1,2 +1,3 @@
-terminar esta implementacion|false
+terminar esta implementacion|true
 comer|false
+terminar el curso|false
