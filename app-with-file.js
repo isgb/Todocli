@@ -1,4 +1,4 @@
-import { read, readFileSync, writeFileSync } from "fs";
+import { read, readFileSync, write, writeFileSync } from "fs";
 import {createInterface} from "readline";
 import chalk from "chalk";
 
@@ -40,7 +40,9 @@ function loadTasks() {
 }
 
 function saveTask() {
-    
+    cons tdata = tasks.map(task => `${task.task}|${task.completed}`.join("\n"))
+    writeFileSync(DB_FILE,data, "utf-8")
+    console.log(chalk.green.bold("Tarea agregada a la BD con éxito.\n"));
 }
 
 function addTask(){
